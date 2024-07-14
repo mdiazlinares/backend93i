@@ -1,25 +1,16 @@
 //Forma de importar en NODE
 const express = require('express');
-
+const dbConection = require('./database/config');
+require('dotenv').config();
 const app = express();
 
-app.get('/Saludo', (req,res)=>{
-    res.send('Hello World');   
-});
- 
-app.post('/crearUsuario', (req,res)=>{
-    res.send('Usuario Creado');   
-});
+app.use(express.json());
 
-app.delete('/borrarUsuario', (req,res)=>{
-    res.send('Usuario Borrado');   
-});
+app.use("/auth", require("./router/authrouter"));
 
-app.put('/modificarUsuario', (req,res)=>{
-    res.send('Usuario Modificado');   
-});
+dbConection();
 
-app.listen(4000, () => { 
-    console.log('Example app listening on port 6600!');
+app.listen(process.env.PORTLOCAL, () => { 
+    console.log(`Example app listening on port ${process.env.PORTLOCAL}`);
 });
 
