@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt');
 const crearUsuario = async (req,res)=>{
     try {
         //A traves del req.body recibimos lo enviado desde el "FRONT"
-        const {name, edad, email, password, rol} = req.body; 
+        const {name, edad, email, password} = req.body; 
 
         //Validaciones
-        if(name === '' | edad === '' | email === '' | password === '' | rol === ''){
+        if(name === '' | edad === '' | email === '' | password === ''){
             res.status(400).json({
                 msg: 'Todos los campos son obligatorios',
             });
